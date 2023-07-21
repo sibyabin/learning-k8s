@@ -1,24 +1,42 @@
 #!/bin/bash
+
+# Title: kubectl-installer
+# Description: kubectl cli installation script
+# Author: Siby Abin Thomas
+# Date: 2023-07-22
+
 set -e
+error_exit=1
+
+error_exit() {
+    echo "ERROR:Error while installing kubectl. Please refer https://kubernetes.io/docs/tasks/tools/ "
+    echo "ERROR:Going to exit with code=${error_exit}"
+    exit $error_exit
+}
 
 type=$(uname -m)
-echo "Type is '${type}'"
+echo "INFO:Processor type=${type}"
 
-if [ "${type}" = "aarch64" ]
-then 
-    command='curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl"'
-    echo "Going to use the command '${command}'"
-    eval ${command}
-    $(chmod +x kubectl) && $(mkdir -p ~/.local/bin) && $(mv ./kubectl ~/.local/bin/kubectl)
-    if [ $? -eq 0 ]
-    then
-        echo "Installation successful"
-	echo "$(kubectl version --client --output=yaml)"
-    else
-        echo "Unable to proceed with installation. Please refer https://kubernetes.io/docs/tasks/tools/ "
-    fi
-else 
-    echo "Unable to proceed with installation. Please refer https://kubernetes.io/docs/tasks/tools/ "
-    exit 1
+case "${type}" in
+    "aarch64") key='arm64'
+               ;;
+    "x86_64") key='amd64'
+              ;;
+    *) error_exit
+       ;;
+esac
+
+
+command="curl -LO 'https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${key}/kubectl'"
+echo "INFO:Going to use the command '${command}'"
+eval ${command}
+$(chmod +x kubectl) && $(mkdir -p ~/.local/bin) && $(mv ./kubectl ~/.local/bin/kubectl)
+if [ $? -eq 0 ]
+then
+   echo "INFO:Installation successful"
+   echo "$(kubectl version --client --output=yaml)"
+else
+   error_exit
 fi
+
 exit 0
