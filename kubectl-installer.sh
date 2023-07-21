@@ -9,7 +9,6 @@ set -e
 
 error_exit() {
     echo "ERROR:Error while installing kubectl. Please refer https://kubernetes.io/docs/tasks/tools/ "
-    echo "ERROR:Going to exit with code=${error_exit}"
     exit 1
 }
 
