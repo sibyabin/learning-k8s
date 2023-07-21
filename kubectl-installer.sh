@@ -6,12 +6,11 @@
 # Date: 2023-07-22
 
 set -e
-error_exit=1
 
 error_exit() {
     echo "ERROR:Error while installing kubectl. Please refer https://kubernetes.io/docs/tasks/tools/ "
     echo "ERROR:Going to exit with code=${error_exit}"
-    exit $error_exit
+    exit 1
 }
 
 type=$(uname -m)
