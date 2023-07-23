@@ -3,19 +3,25 @@
 
 | SI | Sections |
 | ------ | ------ |
-| 1 | [What is Kuberbnetes](#what-is-kubernetes) |
-| 2 | [Container Orchestration](#container-orchestration) |
+| 1 | [What is Kuberbnetes](#1-what-is-kubernetes) |
+| 2 | [Sample Architecture](#2-sample-architecture) |
+| 3 | [Container Orchestration Solutions](#3-container-orchestration-solutions)|
+| 4 | [Installation Options](#4-installation-options) | 
+| 5 | [Getting Started](#5-getting-started) | 
+| 6 | []() | 
 
 
 
 <hr>
-## WHAT IS KUBERNETES
+
+## 1. WHAT IS KUBERNETES
 
 
-## SAMPLE ARCHITECTURE 
+## 2. SAMPLE ARCHITECTURE 
 ![Kubernetes](resources/images/kubernetes-architecture.svg?raw=true "Kubernetes Architecture")
 
 <hr>
+
 ## 3. CONTAINER ORCHESTRATION SOLUTIONS
 - Docker Swarm
 - **Kubernetes**
@@ -35,7 +41,7 @@
 
 <hr>
 
-## Getting Started
+## 5. GETTING STARTED
 When starting with Kubernetes, opting for managed services is the more convenient choice, and in our case, we will be going with **DigitalOcean** to take advantage of the credits offered for 60 days.
 
 #### • Create an account with Digital Ocean
